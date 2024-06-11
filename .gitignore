@@ -1,1 +1,5 @@
 node_modules/
+
+# files from QR project
+**/qr_code.png
+**/qr_text.txt
