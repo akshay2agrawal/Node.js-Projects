@@ -7,29 +7,20 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
-// create application/json parser
-var jsonParser = bodyParser.json();
-
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: true });
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
 app.use(customMiddleware);
 
-// POST /login gets urlencoded bodies
-app.post("/submit", urlencodedParser, function (req, res) {
-  console.log(req.body);
-});
-
-// POST /api/users gets JSON bodies
-app.post("/api/users", jsonParser, function (req, res) {
-  // create user in req.body
-  console.log("user route");
-  res.send("user route" + req.body);
-});
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+
+// POST /login gets urlencoded bodies
+app.post("/submit", function (req, res) {
+  // console.log(req.body.street + req.body.pet);
+  res.send(
+    `<h1>Your band name is:<h1><h2>${req.body["street"]}${req.body["pet"]}<h2>`
+  );
 });
 
 app.listen(port, () => {
