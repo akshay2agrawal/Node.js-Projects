@@ -1,0 +1,18 @@
+<%- include('partials/header.ejs') %>
+<% if (locals.message) { %>
+  <h3><%= message %></h3>  
+ <% } %>
+
+
+<h1><%= title %></h1>
+<p><%= content %></p>
+
+<form action=<%= "/blog/" + title + "/edit" %> >
+  <button type="submit">Edit</button>
+</form>
+
+<form action="/blog/<%= title%>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form>
+
+<%- include('partials/footer.ejs') %>

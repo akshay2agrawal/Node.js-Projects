@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') %>
+<!-- <h1>Blog web application</h1> -->
+
+ 
+<% if(locals.message){ %>
+  <h3> <%= message %> </h3>
+<% } else { %>
+  <h3>Blogs</h3>
+<% } %>
+
+<% if(locals.blogs){ %> 
+  <ul>
+    <% Object.keys(blogs).forEach(key => { %>
+      <li><a href="/blog/<%- key %>"> <%= key %> </a></li>
+    <% }); %> 
+  </ul>  
+<% } else { %> 
+
+    No blogs yet!
+  
+    <form action="/create" method="get">
+    <button type="submit">create blog</button>
+    </form>
+
+<% } %>
+<br />
+
+<%- include('partials/footer.ejs') %>
